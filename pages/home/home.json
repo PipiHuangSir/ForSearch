@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "海豚视界",
+  "enablePullDownRefresh":true,
+  "backgroundColor": "rgb(253, 253, 253)"
+}

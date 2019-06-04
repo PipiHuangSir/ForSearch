@@ -1,0 +1,11 @@
+<!--pages/index/index.wxml-->
+<view class='index-container'>
+
+  <view class='title'>
+    <text style='color:lightyellow'>欢迎</text>
+  </view>
+
+  <view class='btn'>
+    <button class='loginBtn' type='primary' bindtap='goToSearch'>指尖上的搜索</button>
+  </view>
+</view>

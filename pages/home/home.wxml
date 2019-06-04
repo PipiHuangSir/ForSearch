@@ -1,0 +1,66 @@
+<wxs module="dateUtil" src="../../utils/dateUtil.wxs"></wxs>
+<wxs module="stringUtil" src="../../utils/stringUtil.wxs"></wxs>
+
+<view class='bar'>
+  <view class='selectBar' wx:for="{{mediaType}}" wx:key="key" wx:for-item="item" bindtap='changeIndex'>
+    <view class='{{index==selectIndex?"allSelect":"all"}}' bindtap='changeColor' data-index="{{index}}">{{item.type}}</view>
+  </view>
+  <view class='searchText'>
+    <input class='text' placeholder='搜索' bindtap='gotoSearch' value='{{keyword}}'></input>
+  </view>
+</view>
+
+<view class='content'>
+  <scroll-view class='list' scroll-y="true" style='height:1200rpx' bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}">
+    <block wx:if="{{newsData.length>0}}">
+      <view wx:for="{{newsData}}" wx:key="key" wx:for-item="item">
+        <block wx:if="{{!stringUtil.stringUtil(item.thumb)&&!stringUtil.stringUtil(item.summary)}}">
+          <view class='news1'>
+            <view class='top_1'>
+              <text class='title'>{{item.summary}}</text>
+              <image class='image' src="{{item.thumb}}"></image>
+            </view>
+            <view class='buttom'>
+              <text class='channel'>{{item.sacname}}</text>
+              <text class='text'>{{dateUtil.dateFormat(item.updateDate)}}</text>
+            </view>
+            <view class='line'></view>
+          </view>
+        </block>
+
+        <block wx:elif="{{stringUtil.stringUtil(item.thumb)&&!stringUtil.stringUtil(item.summary)&&!stringUtil.stringUtil(item.pics)}}">
+          <view class='news2'>
+            <view class='top_2'>
+              <text class='title'>{{item.title}}</text>
+              <image class='pics' src="{{item.pics}}" mode='widthFix'></image>
+            </view>
+            <view class='buttom'>
+              <text class='channel'>{{item.sacname}}</text>
+              <text class='text'>{{dateUtil.dateFormat(item.updateDate)}}</text>
+            </view>
+            <view class='line'></view>
+          </view>
+        </block>
+
+        <block wx:elif="{{!stringUtil.stringUtil(item.thumb)}}">
+          <view class='news3'>
+            <view class='top_3'>
+              <text>{{item.summary}}</text>
+              <image class='pics' src="{{item.pics}}" mode='widthFix'></image>
+            </view>
+            <view class='buttom'>
+              <text class='channel'>{{item.sacname}}</text>
+              <text class='text'>{{dateUtil.dateFormat(item.updateDate)}}</text>
+            </view>
+            <view class='line'></view>
+          </view>
+        </block>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='none'>
+        <text class='showNone'>什么都没有找到哦!</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

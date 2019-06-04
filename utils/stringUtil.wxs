@@ -1,0 +1,10 @@
+var isEmpty = function(imageUrl){
+  if(imageUrl==null || imageUrl==""){
+    return true;
+  }
+  return false;
+}
+
+module.exports = {
+  stringUtil: isEmpty
+};
